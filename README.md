@@ -22,39 +22,39 @@ The Titanic dataset contains passenger information from the 1912 RMS Titanic dis
 
 ## Notebook Structure
 
-### Part A — Dataset Exploration
+### Part A - Dataset Exploration
 - Load dataset into a Pandas DataFrame
 - Inspect first/last 5 rows, dataset shape
 - View column names, data types, and summary statistics
 
-### Part B — Filtering Data
+### Part B - Filtering Data
 - Filter by age, gender, survival status, passenger class, and fare
 - Use both boolean indexing and `query()` method
 - Filter passengers by embarkation port
 
-### Part C — Unique Values and Counts
+### Part C - Unique Values and Counts
 - Find unique passenger classes and embarkation ports
 - Count passengers by class, gender, and survival status using `value_counts()`
 
-### Part D — Sorting
+### Part D - Sorting
 - Top 10 passengers by highest fare paid
 - Top 10 youngest passengers
 - Multi-column sort by passenger class and age
 
-### Part E — Missing Values
+### Part E - Missing Values
 - Count missing values per column
 - Count missing ages specifically
 - Handle missing values:
   - Replace missing age with mean age
   - Drop all rows with any missing values
 
-### Part F — Grouping
+### Part F - Grouping
 - Average age and fare per passenger class
 - Survival rate by gender
 - Average age by gender
 - Passenger count per embarkation port
 
-### Part G — Mini Analysis (Key Findings)
+### Part G - Mini Analysis (Key Findings)
 | Question | Finding |
 |---|---|
 | Highest survival rate by class | First class — **62%** |

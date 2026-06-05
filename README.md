@@ -57,8 +57,8 @@ The Titanic dataset contains passenger information from the 1912 RMS Titanic dis
 ### Part G - Mini Analysis (Key Findings)
 | Question | Finding |
 |---|---|
-| Highest survival rate by class | First class — **62%** |
-| Did females survive more than males? | Yes — female survival rate: **74%** |
+| Highest survival rate by class | First class - **62%** |
+| Did females survive more than males? | Yes - female survival rate: **74%** |
 | Most popular embarkation port | **Southampton (S)** |
 | Maximum fare paid | **512** |
 | Average passenger age | **~29 years** |

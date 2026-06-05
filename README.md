@@ -99,3 +99,5 @@ jupyter notebook Titanic_Dataset_Analysis.ipynb
 - `df.sort_values()`, `df.value_counts()`, `df.unique()`
 - `df.isnull().sum()`, `df.fillna()`, `df.dropna()`
 - `df.groupby()` with aggregation functions (`mean`, `count`)
+
+Graphical Representation: https://j019.github.io/Titanic-Dataset-Analysis-using-Pandas/

@@ -259,9 +259,10 @@
   <ul class="nav-links">
     <li><a href="#overview">Overview</a></li>
     <li><a href="#methods">Methods</a></li>
-    <li><a href="#charts">Analysis</a></li>
+    <li><a href="#errors">Errors</a></li>
     <li><a href="#deeper">Deep Dive</a></li>
-    <li><a href="#explorer">Explorer</a></li>
+    <li><a href="#business">Thinking</a></li>
+    <li><a href="#learned">Reflection</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://github.com/j019/Titanic-Dataset-Analysis-using-Pandas" target="_blank">GitHub ↗</a></li>
   </ul>
@@ -313,6 +314,18 @@
   <span class="tool-tag"><span class="dot"></span>Jupyter Notebook</span>
   <span class="tool-tag"><span class="dot"></span>Google Colab</span>
   <span class="tool-tag"><span class="dot"></span>Chart.js</span>
+</div>
+
+<!-- DATA SOURCE STRIP -->
+<div class="source-strip">
+  <div class="source-inner">
+    <span class="source-label">Data Source</span>
+    <a class="source-pill" href="https://www.kaggle.com/datasets/yasserh/titanic-dataset" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Kaggle - Titanic Dataset (titanic.csv)
+    </a>
+    <span class="source-note">Downloaded from Kaggle's public dataset repository. 891 rows, 12 columns. No API - just a straight CSV download and loaded with <code style="font-family:'DM Mono',monospace;font-size:12px;background:var(--mist);padding:1px 6px;">pd.read_csv('titanic.csv')</code>.</span>
+  </div>
 </div>
 
 <!-- SURVIVAL SPLIT -->
@@ -434,6 +447,53 @@
   </div>
 </div>
 
+<!-- ERRORS & FIXES -->
+<div class="errors-section" id="errors">
+  <div class="errors-inner">
+    <div class="sec-label">Real problems · Real fixes</div>
+    <h2 class="sec-title">What broke - and how I fixed it</h2>
+    <div class="errors-grid">
+
+      <div class="error-card">
+        <span class="error-badge err">Error</span>
+        <div class="error-title">KeyError on column name</div>
+        <code class="error-code">KeyError: 'Gender'<br># I was using capital G</code>
+        <div class="error-desc">Spent longer than I'd like to admit on this. The column was <em>gender</em>, all lowercase. df.columns showed me immediately. Lesson: always check column names first, don't assume casing.</div>
+        <span class="error-badge fix" style="margin-top:14px;">Fix</span>
+        <code class="error-code">print(df.columns)<br># used df['gender'] after</code>
+      </div>
+
+      <div class="error-card">
+        <span class="error-badge err">Error</span>
+        <div class="error-title">groupby returning NaN for age</div>
+        <code class="error-code">df.groupby('pclass')['age'].mean()<br># some groups returned NaN</code>
+        <div class="error-desc">Ran groupby on age before handling missing values. 177 nulls caused certain group means to come back as NaN. Had to handle missing values in Part E before running Part F groupby operations.</div>
+        <span class="error-badge fix" style="margin-top:14px;">Fix</span>
+        <code class="error-code">df['age'] = df['age'].fillna(<br>  df['age'].mean())</code>
+      </div>
+
+      <div class="error-card">
+        <span class="error-badge err">Error</span>
+        <div class="error-title">dropna() wiped too many rows</div>
+        <code class="error-code">df.dropna(inplace=True)<br># went from 891 to 183 rows</code>
+        <div class="error-desc">Used dropna() without specifying a column - it dropped any row with a single null anywhere. Lost 708 rows. Had to restart the kernel and work on a separate copy of the DataFrame to preserve the original.</div>
+        <span class="error-badge fix" style="margin-top:14px;">Fix</span>
+        <code class="error-code">df_clean = df.dropna(subset=['age'])<br># only drops rows missing age</code>
+      </div>
+
+      <div class="error-card">
+        <span class="error-badge err">Error</span>
+        <div class="error-title">SettingWithCopyWarning</div>
+        <code class="error-code">df_filtered['age'] = 30<br># pandas threw a warning</code>
+        <div class="error-desc">When I created a filtered DataFrame and tried to modify it, pandas warned me I might be editing a copy, not the original. Had to use .copy() explicitly when creating subsets.</div>
+        <span class="error-badge fix" style="margin-top:14px;">Fix</span>
+        <code class="error-code">df_filtered = df[df['pclass']==1].copy()<br># safe to modify now</code>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- DEEPER INSIGHT: Age x Class crossover -->
 <div class="deeper-section" id="deeper">
   <div class="deeper-inner">
@@ -527,6 +587,54 @@
   </div>
 </section>
 
+<!-- BUSINESS FRAMING -->
+<div class="business-section" id="business">
+  <div class="business-inner">
+    <div class="sec-label">Applied Thinking</div>
+    <h2 class="sec-title">What would this mean in the real world?</h2>
+    <p class="business-intro">The Titanic dataset is historical, but the analytical questions map directly to real operational problems. If I were presenting this to a maritime safety board or an insurance company, here's how I'd frame these findings:</p>
+    <div class="business-cards">
+
+      <div class="biz-card">
+        <div class="biz-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="biz-question">Which passenger profile needs priority evacuation planning?</div>
+        <div class="biz-answer">3rd class male passengers had the lowest survival rate at ~14%. Any evacuation protocol redesign should focus on improving lower-deck access to lifeboats - the data shows a clear structural disadvantage.</div>
+        <span class="biz-tag">→ Emergency Planning</span>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="biz-question">How should an insurer price survival risk by passenger class?</div>
+        <div class="biz-answer">Survival rate drops from 62% to 24% between 1st and 3rd class - a 38-point gap. If an insurer priced life coverage for maritime travel, class would be a statistically significant variable alongside gender and age.</div>
+        <span class="biz-tag">→ Risk & Insurance</span>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div class="biz-question">Does fare predict survival, or is class the real variable?</div>
+        <div class="biz-answer">Max fare was £512, average was ~£3 for 3rd class. Fare correlates strongly with class, and class correlates with survival. But fare alone isn't the driver - it's what fare bought you (deck location, lifeboat proximity) that mattered.</div>
+        <span class="biz-tag">→ Feature Analysis</span>
+      </div>
+
+      <div class="biz-card">
+        <div class="biz-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="biz-question">Is mean imputation the right choice for missing ages?</div>
+        <div class="biz-answer">For this analysis, yes - it preserved the row count for groupby without skewing distributions too much. But in a production ML pipeline I'd investigate whether missing ages cluster in 3rd class, which would make the missingness informative, not random.</div>
+        <span class="biz-tag">→ Data Quality</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- NOTEBOOK LINK SECTION -->
 <div class="notebook-section">
   <div class="notebook-inner">
@@ -536,7 +644,7 @@
       <div class="notebook-desc">The complete Jupyter notebook with all pandas operations, cell outputs, and analysis steps - Parts A through G - is available on GitHub.</div>
     </div>
     <div class="notebook-actions">
-      <a href="https://github.com/j019/Titanic-Dataset-Analysis-using-Pandas/blob/main/Titanic_Dataset_Analysis.ipynb" target="_blank" class="btn btn-primary">
+      <a href="https://github.com/j019/Titanic-Dataset-Analysis-using-Pandas/blob/main/Titanic-Dataset-Analysis.ipynb" target="_blank" class="btn btn-primary">
         <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         Open Notebook (.ipynb)
       </a>
@@ -579,6 +687,58 @@
   <div class="pagination" id="pagination"></div>
   <div class="page-info" id="pageInfo"></div>
 </section>
+
+<!-- WHAT I LEARNED -->
+<div class="learned-section" id="learned">
+  <div class="learned-inner">
+    <div class="learned-left">
+      <div class="sec-label">Honest reflection</div>
+      <h2 class="sec-title" style="margin-bottom:32px;">What I learned & what I'd improve</h2>
+
+      <div class="learned-block">
+        <div class="learned-block-title">What clicked</div>
+        <p class="learned-text">
+          groupby().mean() was the moment things made sense. Before that, I was filtering individual groups manually - one query per gender, one per class. Once I understood that groupby collapses all of that into a single line, I went back and rewrote half my Part B code. <strong>That kind of refactor is where the real learning happens.</strong>
+        </p>
+      </div>
+
+      <div class="learned-block">
+        <div class="learned-block-title">What I'd do differently</div>
+        <p class="learned-text">
+          Mean imputation for age is a quick fix but it compresses the distribution - 177 ages all become 29, which artificially inflates the count in that bin. If I were taking this further I'd try <strong>median imputation</strong> (more robust to outliers) or model missing ages from pclass and gender using a simple regression. I'd also check whether missing ages were random or concentrated in 3rd class - if they cluster there, the missingness itself is a signal worth keeping.
+        </p>
+      </div>
+
+      <div class="learned-block">
+        <div class="learned-block-title">Limitation I noticed mid-analysis</div>
+        <p class="learned-text">
+          The dataset has no cabin number for most 3rd class passengers. Cabin location determines lifeboat proximity - so one of the most important variables for survival is also one of the most missing. Any survival model built on this data would have a structural blind spot there. I noted it but couldn't fix it with pandas alone.
+        </p>
+      </div>
+    </div>
+
+    <div class="learned-right">
+      <div class="sec-label" style="margin-bottom:20px;">What's next</div>
+      <ul class="next-steps">
+        <li>
+          <div><strong>Logistic Regression model</strong>Use sklearn to predict survival probability based on class, gender, and age. The groupby results already hint at which features matter most.</div>
+        </li>
+        <li>
+          <div><strong>Median vs. mean imputation comparison</strong>Run the full analysis twice - once with mean-filled ages, once with median - and compare groupby outputs to see how much it changes the survival rates.</div>
+        </li>
+        <li>
+          <div><strong>Visualise with Seaborn or Matplotlib</strong>The charts here are built with Chart.js for the web page. The notebook needs proper Python visualisations - heatmaps with seaborn.heatmap(), distribution plots with histplot(), to complete the analytical picture.</div>
+        </li>
+        <li>
+          <div><strong>Check if missing ages cluster by class</strong>Run df[df['age'].isnull()].groupby('pclass').size() - if 3rd class has disproportionately more nulls, the missingness is informative and shouldn't be imputed blindly.</div>
+        </li>
+        <li>
+          <div><strong>Correlation matrix</strong>df.corr() on the numeric columns - age, fare, pclass, survived - to formally quantify which variables actually move together, not just visually.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
@@ -709,7 +869,7 @@ function renderTable(){
   document.getElementById('tableBody').innerHTML=page.map(p=>`<tr>
     <td style="font-family:'DM Mono',monospace;font-size:11px;color:#bbb">${p.id}</td>
     <td>${p.name}</td>
-    <td>${p.age??'<span style="color:#ccc">-</span>'}</td>
+    <td>${p.age??'<span style="color:#ccc">—</span>'}</td>
     <td>${p.gender}</td>
     <td><span class="badge b${p.pclass}">${p.pclass===1?'1st':p.pclass===2?'2nd':'3rd'}</span></td>
     <td style="font-family:'DM Mono',monospace;font-size:12px">£${p.fare.toFixed(2)}</td>

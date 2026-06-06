@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Titanic Data Analysis — Jatin Valecha</title>
+<title>Titanic Data Analysis</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -98,7 +98,7 @@
   .bar-fill.c3{background:var(--rust);color:white;}
   .bar-pct{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--paper);}
 
-  /* DEEPER INSIGHT — age x class heatmap */
+  /* DEEPER INSIGHT - age x class heatmap */
   .deeper-section{background:var(--paper);padding:88px 24px;border-top:1px solid var(--mist);}
   .deeper-inner{max-width:1200px;margin:0 auto;}
   .deeper-note{font-size:14px;color:#666;line-height:1.8;max-width:600px;margin-bottom:36px;}
@@ -271,7 +271,7 @@
 <div class="hero" id="top">
   <div class="hero-eyebrow">Data Analysis Project · Python · Pandas</div>
   <h1>Titanic<span>Data Analysis</span></h1>
-  <p class="hero-desc">Exploring survival patterns across 891 passengers using pandas — filtering, grouping, cleaning missing values, and pulling out what the numbers actually say.</p>
+  <p class="hero-desc">Exploring survival patterns across 891 passengers using pandas - filtering, grouping, cleaning missing values, and pulling out what the numbers actually say.</p>
   <div class="divider"></div>
   <div class="hero-stats">
     <div class="hero-stat">
@@ -341,13 +341,13 @@
         <div class="method-part">Part A</div>
         <div class="method-name">Dataset Exploration</div>
         <code class="method-code">df.head() / df.describe()<br>df.dtypes / df.shape</code>
-        <div class="method-desc">First pass — checking shape, column types, and what the data actually looks like before doing anything else.</div>
+        <div class="method-desc">First pass - checking shape, column types, and what the data actually looks like before doing anything else.</div>
       </div>
       <div class="method-card">
         <div class="method-part">Part B</div>
         <div class="method-name">Filtering</div>
         <code class="method-code">df[df['age'] > 30]<br>df.query('pclass == 1')</code>
-        <div class="method-desc">Boolean indexing and query() to slice specific groups — survivors, females, passengers by class and port.</div>
+        <div class="method-desc">Boolean indexing and query() to slice specific groups - survivors, females, passengers by class and port.</div>
       </div>
       <div class="method-card">
         <div class="method-part">Part C</div>
@@ -359,7 +359,7 @@
         <div class="method-part">Part D</div>
         <div class="method-name">Sorting</div>
         <code class="method-code">df.sort_values('fare',<br>  ascending=False).head(10)</code>
-        <div class="method-desc">Top 10 by fare and youngest passengers. Also sorted by multiple columns — class then age.</div>
+        <div class="method-desc">Top 10 by fare and youngest passengers. Also sorted by multiple columns - class then age.</div>
       </div>
       <div class="method-card">
         <div class="method-part">Part E</div>
@@ -441,7 +441,7 @@
     <h2 class="sec-title">Does age change survival within each class?</h2>
     <p class="deeper-note">
       After the basic groupby, I wanted to check if <strong>age interacted with class</strong> to affect survival. 
-      The result was interesting — in 1st class, older passengers actually survived at a higher rate than younger ones. 
+      The result was interesting - in 1st class, older passengers actually survived at a higher rate than younger ones. 
       In 3rd class it was the opposite: younger passengers had a slight edge, but survival rates were low across all age groups. 
       I split ages into under-30 and 30+ using <strong>df[df['age'] < 30]</strong> and compared groupby results across classes.
     </p>
@@ -497,7 +497,7 @@
     <div class="insight-card">
       <div class="i-num">74%</div>
       <div class="i-lbl">Female Survival Rate</div>
-      <div class="i-txt">Women survived at nearly 4× the rate of men. The "women and children first" protocol was clearly followed — and the data backs it up.</div>
+      <div class="i-txt">Women survived at nearly 4× the rate of men. The "women and children first" protocol was clearly followed - and the data backs it up.</div>
     </div>
     <div class="insight-card">
       <div class="i-num">62%</div>
@@ -507,7 +507,7 @@
     <div class="insight-card">
       <div class="i-num">512</div>
       <div class="i-lbl">Max Fare Paid (£)</div>
-      <div class="i-txt">Highest fare in the dataset — over 170× the average 3rd class fare of ~£3. Found using df.sort_values('fare', ascending=False).</div>
+      <div class="i-txt">Highest fare in the dataset - over 170× the average 3rd class fare of ~£3. Found using df.sort_values('fare', ascending=False).</div>
     </div>
     <div class="insight-card">
       <div class="i-num">29</div>
@@ -517,12 +517,12 @@
     <div class="insight-card">
       <div class="i-num">S</div>
       <div class="i-lbl">Top Port: Southampton</div>
-      <div class="i-txt">644 passengers boarded at Southampton — nearly 4× Cherbourg (168) and over 8× Queenstown (77).</div>
+      <div class="i-txt">644 passengers boarded at Southampton - nearly 4× Cherbourg (168) and over 8× Queenstown (77).</div>
     </div>
     <div class="insight-card">
       <div class="i-num">19%</div>
       <div class="i-lbl">Male Survival Rate</div>
-      <div class="i-txt">Only 1 in 5 men survived. Even within males, class had a strong effect — 1st class men fared significantly better than 3rd class.</div>
+      <div class="i-txt">Only 1 in 5 men survived. Even within males, class had a strong effect - 1st class men fared significantly better than 3rd class.</div>
     </div>
   </div>
 </section>
@@ -533,7 +533,7 @@
     <div class="notebook-text">
       <div class="notebook-label">Source Code</div>
       <div class="notebook-title">View the full notebook on GitHub</div>
-      <div class="notebook-desc">The complete Jupyter notebook with all pandas operations, cell outputs, and analysis steps — Parts A through G — is available on GitHub.</div>
+      <div class="notebook-desc">The complete Jupyter notebook with all pandas operations, cell outputs, and analysis steps - Parts A through G - is available on GitHub.</div>
     </div>
     <div class="notebook-actions">
       <a href="https://github.com/j019/Titanic-Dataset-Analysis-using-Pandas/blob/main/Titanic_Dataset_Analysis.ipynb" target="_blank" class="btn btn-primary">
@@ -709,7 +709,7 @@ function renderTable(){
   document.getElementById('tableBody').innerHTML=page.map(p=>`<tr>
     <td style="font-family:'DM Mono',monospace;font-size:11px;color:#bbb">${p.id}</td>
     <td>${p.name}</td>
-    <td>${p.age??'<span style="color:#ccc">—</span>'}</td>
+    <td>${p.age??'<span style="color:#ccc">-</span>'}</td>
     <td>${p.gender}</td>
     <td><span class="badge b${p.pclass}">${p.pclass===1?'1st':p.pclass===2?'2nd':'3rd'}</span></td>
     <td style="font-family:'DM Mono',monospace;font-size:12px">£${p.fare.toFixed(2)}</td>

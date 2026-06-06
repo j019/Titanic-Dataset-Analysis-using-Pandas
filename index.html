@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Titanic Data Analysis - Jatin Valecha</title>
+<title>Titanic Data Analysis — Jatin Valecha</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -98,7 +98,7 @@
   .bar-fill.c3{background:var(--rust);color:white;}
   .bar-pct{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--paper);}
 
-  /* DEEPER INSIGHT - age x class heatmap */
+  /* DEEPER INSIGHT — age x class heatmap */
   .deeper-section{background:var(--paper);padding:88px 24px;border-top:1px solid var(--mist);}
   .deeper-inner{max-width:1200px;margin:0 auto;}
   .deeper-note{font-size:14px;color:#666;line-height:1.8;max-width:600px;margin-bottom:36px;}
@@ -183,6 +183,63 @@
   footer a:hover{opacity:.65;}
   .footer-copy{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:rgba(245,240,232,0.2);}
 
+  /* DATA SOURCE STRIP */
+  .source-strip{background:var(--paper);border-top:1px solid var(--mist);border-bottom:1px solid var(--mist);padding:28px 24px;}
+  .source-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .source-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3, #aaa);flex-shrink:0;}
+  .source-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--mist);background:white;font-family:'DM Mono',monospace;font-size:12px;color:var(--ocean);text-decoration:none;transition:border-color .2s,color .2s;}
+  .source-pill:hover{border-color:var(--ocean);color:var(--ocean);}
+  .source-pill svg{width:13px;height:13px;flex-shrink:0;}
+  .source-note{font-size:13px;color:#888;line-height:1.6;}
+
+  /* ERRORS & FIXES */
+  .errors-section{background:var(--ink);padding:80px 24px;}
+  .errors-inner{max-width:1200px;margin:0 auto;}
+  .errors-inner .sec-label{color:var(--gold);}
+  .errors-inner .sec-title{color:var(--paper);}
+  .errors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;}
+  .error-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:28px 24px;}
+  .error-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;margin-bottom:14px;}
+  .error-badge.err{background:rgba(192,57,43,0.25);color:#e88;}
+  .error-badge.fix{background:rgba(44,120,115,0.25);color:#8dd;}
+  .error-title{font-size:14px;font-weight:500;color:var(--paper);margin-bottom:8px;}
+  .error-code{font-family:'DM Mono',monospace;font-size:11px;color:#888;background:rgba(0,0,0,0.3);padding:8px 12px;margin:10px 0;border-left:2px solid rgba(255,255,255,0.1);display:block;line-height:1.7;}
+  .error-desc{font-size:13px;color:rgba(245,240,232,0.45);line-height:1.7;}
+  .error-arrow{display:flex;align-items:center;justify-content:center;padding:20px 0;color:rgba(255,255,255,0.15);font-size:24px;}
+
+  /* BUSINESS FRAMING */
+  .business-section{background:var(--paper);padding:80px 24px;border-top:1px solid var(--mist);}
+  .business-inner{max-width:1200px;margin:0 auto;}
+  .business-intro{font-size:14px;color:#666;line-height:1.8;max-width:620px;margin-bottom:40px;}
+  .business-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+  .biz-card{border:1px solid var(--mist);background:white;padding:28px 24px;transition:box-shadow .2s,transform .2s;}
+  .biz-card:hover{box-shadow:0 8px 24px rgba(26,58,92,0.08);transform:translateY(-2px);}
+  .biz-icon{width:36px;height:36px;background:rgba(26,58,92,0.07);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .biz-icon svg{width:16px;height:16px;stroke:var(--ocean);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .biz-question{font-size:13px;font-weight:600;color:var(--ocean);margin-bottom:8px;line-height:1.4;}
+  .biz-answer{font-size:13px;color:#777;line-height:1.7;}
+  .biz-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--rust);text-transform:uppercase;margin-top:12px;display:block;}
+
+  /* WHAT I LEARNED */
+  .learned-section{background:rgba(26,58,92,0.04);padding:80px 24px;border-top:1px solid var(--mist);}
+  .learned-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  .learned-left{}
+  .learned-right{}
+  .learned-block{margin-bottom:32px;}
+  .learned-block:last-child{margin-bottom:0;}
+  .learned-block-title{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rust);margin-bottom:12px;}
+  .learned-text{font-size:14px;color:#555;line-height:1.85;}
+  .learned-text strong{color:var(--ocean);}
+  .next-steps{list-style:none;}
+  .next-steps li{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--mist);font-size:13px;color:#555;line-height:1.7;}
+  .next-steps li:last-child{border-bottom:none;}
+  .next-steps li::before{content:'→';font-family:'DM Mono',monospace;color:var(--accent);flex-shrink:0;margin-top:2px;}
+  .next-steps li strong{color:var(--ocean);display:block;margin-bottom:2px;}
+
+  @media(max-width:768px){
+    .learned-inner{grid-template-columns:1fr;}
+  }
+
   @media(max-width:640px){
     .survival-inner{grid-template-columns:1fr;}
     .nav-links{display:none;}
@@ -214,7 +271,7 @@
 <div class="hero" id="top">
   <div class="hero-eyebrow">Data Analysis Project · Python · Pandas</div>
   <h1>Titanic<span>Data Analysis</span></h1>
-  <p class="hero-desc">Exploring survival patterns across 891 passengers using pandas - filtering, grouping, cleaning missing values, and pulling out what the numbers actually say.</p>
+  <p class="hero-desc">Exploring survival patterns across 891 passengers using pandas — filtering, grouping, cleaning missing values, and pulling out what the numbers actually say.</p>
   <div class="divider"></div>
   <div class="hero-stats">
     <div class="hero-stat">
@@ -284,13 +341,13 @@
         <div class="method-part">Part A</div>
         <div class="method-name">Dataset Exploration</div>
         <code class="method-code">df.head() / df.describe()<br>df.dtypes / df.shape</code>
-        <div class="method-desc">First pass - checking shape, column types, and what the data actually looks like before doing anything else.</div>
+        <div class="method-desc">First pass — checking shape, column types, and what the data actually looks like before doing anything else.</div>
       </div>
       <div class="method-card">
         <div class="method-part">Part B</div>
         <div class="method-name">Filtering</div>
         <code class="method-code">df[df['age'] > 30]<br>df.query('pclass == 1')</code>
-        <div class="method-desc">Boolean indexing and query() to slice specific groups - survivors, females, passengers by class and port.</div>
+        <div class="method-desc">Boolean indexing and query() to slice specific groups — survivors, females, passengers by class and port.</div>
       </div>
       <div class="method-card">
         <div class="method-part">Part C</div>
@@ -302,7 +359,7 @@
         <div class="method-part">Part D</div>
         <div class="method-name">Sorting</div>
         <code class="method-code">df.sort_values('fare',<br>  ascending=False).head(10)</code>
-        <div class="method-desc">Top 10 by fare and youngest passengers. Also sorted by multiple columns - class then age.</div>
+        <div class="method-desc">Top 10 by fare and youngest passengers. Also sorted by multiple columns — class then age.</div>
       </div>
       <div class="method-card">
         <div class="method-part">Part E</div>
@@ -384,7 +441,7 @@
     <h2 class="sec-title">Does age change survival within each class?</h2>
     <p class="deeper-note">
       After the basic groupby, I wanted to check if <strong>age interacted with class</strong> to affect survival. 
-      The result was interesting - in 1st class, older passengers actually survived at a higher rate than younger ones. 
+      The result was interesting — in 1st class, older passengers actually survived at a higher rate than younger ones. 
       In 3rd class it was the opposite: younger passengers had a slight edge, but survival rates were low across all age groups. 
       I split ages into under-30 and 30+ using <strong>df[df['age'] < 30]</strong> and compared groupby results across classes.
     </p>
@@ -440,7 +497,7 @@
     <div class="insight-card">
       <div class="i-num">74%</div>
       <div class="i-lbl">Female Survival Rate</div>
-      <div class="i-txt">Women survived at nearly 4× the rate of men. The "women and children first" protocol was clearly followed - and the data backs it up.</div>
+      <div class="i-txt">Women survived at nearly 4× the rate of men. The "women and children first" protocol was clearly followed — and the data backs it up.</div>
     </div>
     <div class="insight-card">
       <div class="i-num">62%</div>
@@ -450,7 +507,7 @@
     <div class="insight-card">
       <div class="i-num">512</div>
       <div class="i-lbl">Max Fare Paid (£)</div>
-      <div class="i-txt">Highest fare in the dataset - over 170× the average 3rd class fare of ~£3. Found using df.sort_values('fare', ascending=False).</div>
+      <div class="i-txt">Highest fare in the dataset — over 170× the average 3rd class fare of ~£3. Found using df.sort_values('fare', ascending=False).</div>
     </div>
     <div class="insight-card">
       <div class="i-num">29</div>
@@ -460,12 +517,12 @@
     <div class="insight-card">
       <div class="i-num">S</div>
       <div class="i-lbl">Top Port: Southampton</div>
-      <div class="i-txt">644 passengers boarded at Southampton - nearly 4× Cherbourg (168) and over 8× Queenstown (77).</div>
+      <div class="i-txt">644 passengers boarded at Southampton — nearly 4× Cherbourg (168) and over 8× Queenstown (77).</div>
     </div>
     <div class="insight-card">
       <div class="i-num">19%</div>
       <div class="i-lbl">Male Survival Rate</div>
-      <div class="i-txt">Only 1 in 5 men survived. Even within males, class had a strong effect - 1st class men fared significantly better than 3rd class.</div>
+      <div class="i-txt">Only 1 in 5 men survived. Even within males, class had a strong effect — 1st class men fared significantly better than 3rd class.</div>
     </div>
   </div>
 </section>
@@ -476,7 +533,7 @@
     <div class="notebook-text">
       <div class="notebook-label">Source Code</div>
       <div class="notebook-title">View the full notebook on GitHub</div>
-      <div class="notebook-desc">The complete Jupyter notebook with all pandas operations, cell outputs, and analysis steps - Parts A through G - is available on GitHub.</div>
+      <div class="notebook-desc">The complete Jupyter notebook with all pandas operations, cell outputs, and analysis steps — Parts A through G — is available on GitHub.</div>
     </div>
     <div class="notebook-actions">
       <a href="https://github.com/j019/Titanic-Dataset-Analysis-using-Pandas/blob/main/Titanic_Dataset_Analysis.ipynb" target="_blank" class="btn btn-primary">
